@@ -15,7 +15,7 @@ function NewUser(name){
 
 
 
-alert(user.name);
+//alert(user.name);
 
 //console.log(new User());    // {    name: 'denis',    user: {name:'jack'}}
 
