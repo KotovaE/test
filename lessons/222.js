@@ -124,6 +124,95 @@
 
 //  console.log(personalMoviDB);
 
+
+
+// ПЕРЕПИСАННЫЙ ВАРИАНТ, ГДЕ ВСЕ ФУНКЦИИ ЭТО МЕТОДЫ ОБЪЕКТА**********************************************
+
+// let personalMoviDB = {
+//     count : 0,
+//     movies : {},
+//     actors : {},
+//     genres : [],
+//     privat : false,
+
+//     start() {
+//         personalMoviDB.count = +prompt('How many film have you watched?','');
+    
+//         while (personalMoviDB.count == '' || personalMoviDB.count == null || isNaN(personalMoviDB.count)) {
+//             personalMoviDB.count = +prompt('How many film have you watched?','');
+//         }
+//     },
+
+//     rememberMyFilms() {
+//         let numberOfQuestions = 2;
+//         for (let i = 0; i < numberOfQuestions; i++) {
+//             let a = prompt('What was the last movie you watched',''),
+//                 b = prompt('How do you rate this film?','');
+
+//             if (a !== '' && a !== null && a.length < 50 && b !== null && b !== '') {
+//                 personalMoviDB.movies[a] = b; 
+//             } else {
+//                 i--;
+//             };        
+//         }
+//         return personalMoviDB.movies;
+//     },
+    
+//     detectPersonalLevel() {
+//         if (personalMoviDB.count < 10) {
+//              alert ('few mivies you wached');
+//             } else if (personalMoviDB.count >= 10 && personalMoviDB.count <= 30) {
+//                 alert ('You are a simple watcher');
+//             } else if (personalMoviDB.count > 30) {
+//                  alert ('You are fan of movies');
+//                  } else { 
+//                     alert ('ERROR');
+//                 };
+//     },
+
+//     showMyDB() {
+//          if (!personalMoviDB.privat) {
+//             return ('privat = false');
+//         }
+//     },
+
+//     writeYourGenres() {
+//         for (let i = 0; i < 3; i++) {
+//             let answer = prompt(`Is your favorite movie number ${i+1}?`, '');
+
+//             // while (answer === null || answer === '') {
+//             //     answer = prompt(`AGAIN: Is your favorite movie number ${i+1}?`, '');
+//             // }
+//             // personalMoviDB.genres[i] = answer;
+
+//             if (answer === null || answer === '') {
+//                 i--;
+//             } else {
+//                 personalMoviDB.genres[i] = answer; 
+//             }
+//         }
+
+//         let str = '';
+//         personalMoviDB.genres.forEach((item, index) => {
+//             str = str + `Любимый жанр ${index + 1} - это ${item}\n`;
+//         });
+//         return str;
+//     },
+
+//     toggleVisibleMyDB() {
+//         if (personalMoviDB.privat) {
+//             personalMoviDB.privat = false;
+//             return ('было true, стало false');
+//         } else {
+//             personalMoviDB.privat = true;
+//             return ('было false, стало true');
+//         }
+//     },
+
+// };
+
+// console.log(personalMoviDB.writeYourGenres());
+
 // *****************************************************************************************************
 // *****************************************************************************************************
 
@@ -536,7 +625,6 @@
 //     }
 // }
 
-
 // РЕШЕНИЕ 2:
 
 // function findMaxNumber(a, b, c, d) {
@@ -835,3 +923,153 @@
 // console.log(availableCurr(allAvailableCurrencies, 'UAH'));
 
 // **********************************************************************************************
+
+// ОБЪЕКТЫ И МАССИВЫ (задачи со *)
+
+// Задача: У вас есть небольшой кусочек данных о торговом центре, которые записаны в объекте shoppingMallData. Они содержат массив с данными о магазинах, где указана длина и ширина помещения; высоту помещения; стоимость отопления за 1 кубический метр и бюджет на оплату отопления за месяц. Основная задача - это написать функцию isBudgetEnough, которая буде возвращать строку. Если бюджета хватает для отопления всего объема торгового центра - выводится 'Бюджета достаточно', если нет - 'Бюджета недостаточно'. 
+
+// Но эта задача содержит несколько подзадач внутри:
+
+// - вычисление общей площади всех магазинов, которая вычисляется как длина магазина, умноженная на его ширину;
+
+// - вычисление общего объема торгового центра, так как цена отопления указана в кубических метрах;
+
+// - определение того, хватает ли бюджета на оплату такого объема;
+
+// - все числа идут без единиц измерения для упрощения, просто цифры и все;
+
+// - функция должна продолжать работать, даже если изменяется количество магазинов, высота, бюджет или подставляется вообще другой объект.
+
+// const shoppingMallData = {
+//     shops: [
+//         {width: 10, length: 5},
+//         {width: 15, length: 7},
+//         {width: 20, length: 5},
+//         {width: 8, length: 10}
+//     ],
+//     height: 5,
+//     moneyPer1m3: 30,
+//     budget: 50000
+// };
+
+// function areaOfShopps(obj) {
+//     let areas = 0;
+//     for (let shop of obj.shops) {
+//         areas = areas + shop.width * shop.length;  
+//     }
+//     let volume = areas * obj.height;
+//     return volume;
+// }
+
+// function isBudgetEnough(obj) {
+//     let payment = areaOfShopps(obj) * obj.moneyPer1m3;
+//     if (payment <=  obj.budget) {
+//         return 'Бюджета достаточно';
+//     } else {
+//         return 'Бюджета недостаточно';
+//     }
+// }
+
+// console.log(isBudgetEnough(shoppingMallData));
+
+// ***********************************************************************************************
+
+// Задание: У вас есть список учеников, которые хотят поиграть в игру:
+
+//    const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takesi', 'Sam'];
+
+// Но команд может быть только 3 по 3 человека. Напишите функцию sortStudentsByGroups, которая принимает в себя массив строк. Внутри она сначала сортирует имена по алфавиту. Затем распределяет учеников по 3 человека в 3 группы по алфавитному порядку. Эти группы должны быть массивами. Как итог, функция возвращает новый массив с тремя командами и строкой как 4й элемент.
+
+// Пример:
+// sortStudentsByGroups(students)  =>
+
+// [
+//   [ 'Andrew', 'Ann', 'Bernard' ],
+//   [ 'Cris', 'Josh', 'Mark' ],
+//   [ 'Peter', 'Sam', 'Sandra' ],
+//   'Оставшиеся студенты: Takesi'
+// ]
+
+// Если убрать одно студента из списка, то результат будет:
+// [
+//   [ 'Andrew', 'Ann', 'Bernard' ],
+//   [ 'Cris', 'Josh', 'Mark' ],
+//   [ 'Peter', 'Sam', 'Sandra' ],
+//   'Оставшиеся студенты: -'
+// ]
+
+// А если добавить одного, то:
+// [
+//   [ 'Andrew', 'Ann', 'Bernard' ],
+//   [ 'Cris', 'Josh', 'Mark' ],
+//   [ 'Peter', 'Sam', 'Sandra' ],
+//   'Оставшиеся студенты: Takesi, Somebody'
+// ]
+// То есть, меняется содержимое строки. Все оставшиеся ученики попадают туда.
+
+
+
+// const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takesi', 'Sam', 'Tort'];
+// const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takesi'];
+
+// function sortStudentsByGroups(arr) {
+//     arr.sort();
+
+//     let group = 3;
+//     let arrNew = [];
+//     let str = 'Оставшиеся студенты: ';
+   
+//     for (let i = 0; i < group; i++) {
+//         arrNew[i] = arr.slice(0,3);
+//         arr.splice(0,3); 
+//     }
+     
+//     (arr.length) ? str = str + arr.join(', ') :   str = str + '-';
+//     arrNew.push(str);
+
+//     return arrNew;
+// }
+// console.log(sortStudentsByGroups(students));
+
+// Его решение:************************************************************
+
+// function sortStudentsByGroups(arr) {
+//     arr.sort();
+//     const a = [], b = [], c = [], rest = [];
+
+//     for (let i = 0; i < arr.length; i++) {
+//         if (i < 3) {
+//             a.push(arr[i]);
+//         } else if (i < 6) {
+//             b.push(arr[i]);
+//         } else if (i < 9) {
+//             c.push(arr[i]);
+//         } else {
+//             rest.push(arr[i]);
+//         }
+//     }
+//     return [a,b,c, `Оставшиеся студенты: ${rest.length === 0 ? '-' : rest.join(', ')}`]
+// }
+
+// ***************************************************************************************************
+
+function createCounter() {
+    let counter = 0;
+
+    const myFunction = function() {
+        counter = counter + 1;
+        return counter;
+    }
+    return myFunction;
+}
+
+
+const increment = createCounter();
+const c1 = increment();
+const c2 = increment();
+const c3 = increment();
+
+console.log(increment);
+console.log(c1, c2, c3);
+
+
